@@ -36,24 +36,14 @@ class Tokenizer():
 
         df = wg.Generator().generator();
         df['data'] = df['data'].str.lower()
-        '''
-        remove special characters and filter out/ or not the stopwords
-        '''
+
+        # remove special characters and filter out/ or not the stopwords
         df['tokens_with_sw'] = df.apply(self.remove_stops, axis=1, flag_remove_sw=False)
         df['tokens_without_sw'] = df.apply(self.remove_stops, axis=1, flag_remove_sw=True)
 
         # split the dataframe
         # use numpy to split the set into first 80%, 80%-90%(10%), and last 90%
         train_df, validate_df, test_df = np.split(df.sample(frac=1), [int(.8 * len(df)), int(.9 * len(df))])
-
-        # tokened sets with stopwords
-        train_set = train_df['tokens_with_sw']
-        validate_set = validate_df['tokens_with_sw']
-        test_set = test_df['tokens_with_sw']
-        # tokened sets without stopwords
-        train_set_wo = train_df['tokens_without_sw']
-        validate_set_wo = validate_df['tokens_without_sw']
-        test_set_wo = test_df['tokens_without_sw']
 
         result_dic = {
             'train_set': train_df,
