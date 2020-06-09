@@ -1,8 +1,8 @@
 import pandas as pd;
 import os;
 
-INPUT_PATH1 = 'sentiment/neg.txt';
-INPUT_PATH2 = 'sentiment/pos.txt';
+INPUT_PATH1 = os.getcwd()+'/sentiment/neg.txt';
+INPUT_PATH2 = os.getcwd()+'/sentiment/pos.txt';
 
 class Generator():
 
