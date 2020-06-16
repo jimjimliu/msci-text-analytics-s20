@@ -14,9 +14,11 @@ class Generator():
 
         df_neg = pd.read_csv(r''+INPUT_PATH1,header=None,sep='\t', names=['sentence', 'attitude'])
         df_neg['attitude'] = 'NEG';
+        df_neg['target'] = 0;
 
         df_pos = pd.read_csv(r'' + INPUT_PATH2, header=None, sep='\t', names=['sentence', 'attitude'])
         df_pos['attitude'] = 'POS';
+        df_pos['target'] = 1;
 
         df = pd.concat([df_neg, df_pos])
         return df

@@ -68,6 +68,7 @@ class Tokenizer():
         :return: a set contains the tokenized sentence of <row>
         '''
 
+        label = row['target']
         my_list = row['sentence']
         str = re.sub('[!"#$%&()*+/:;<=>@[^`{|}~\t\n’!"\]#$%&\'()*+,-./:;<=>?@，。?★、…【】《》？“”‘’！[\^_`{|}~]+', "",my_list)
         word_tokens = word_tokenize(str)
@@ -76,14 +77,17 @@ class Tokenizer():
         else:
             result = word_tokens
 
+        result.append(label)
         return result
 
     def write_csv(self, file_name, datas):
         if not os.path.exists(os.getcwd()+"/output"):
             os.mkdir(os.getcwd()+"/output")
 
+        # field_names = ['data', 'target']
         file_csv = open(file_name, 'w')
         writer = csv.writer(file_csv, delimiter=',', quotechar=' ', quoting=csv.QUOTE_MINIMAL)
+        # writer.writerow(field_names)
         for data in datas:
             writer.writerow(data)
 
