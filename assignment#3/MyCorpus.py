@@ -2,6 +2,7 @@ from gensim.test.utils import datapath
 from gensim import utils
 import pandas as pd
 import os
+import re
 
 class MyCorpus(object):
     """An interator that yields sentences (lists of str)."""
@@ -35,15 +36,27 @@ class MyCorpus(object):
         neg_df['target'] = 0
 
         df = pd.concat([pos_df, neg_df])
+        # drop rows contain missing value
         df.dropna(axis=0, how='any', thresh=None, subset=None, inplace=True)
+        # clean the data
+        df['sentence'] = df.apply(self.__preprocess, axis=1, column='sentence')
 
         return df
+
+    def __preprocess(self, dataframe, column):
+
+        data = dataframe[column]
+        str = re.sub('[!"#$%&()*+/:;<=>@[^`{|}~\t\n’!"\]#$%&\'()*+,-./:;<=>?@，。?★、…【】《》？“”‘’！[\^_`{|}~]+', "", data)
+        # remove numbers
+        str = re.sub('[0-9]', '', str)
+
+        return str.lower()
 
 
     def get_df(self):
         return self.data
 
-if __name__ == '__main__':
-    sentences = MyCorpus()
-    df = sentences.get_df()
-    print(df)
+# if __name__ == '__main__':
+#     sentences = MyCorpus()
+#     df = sentences.get_df()
+#     print(df[7:15])

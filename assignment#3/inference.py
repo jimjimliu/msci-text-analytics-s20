@@ -24,8 +24,8 @@ class Inference():
         result_df = pd.DataFrame(columns=['word' ,'most_similar', 'similarity'])
 
         for index, row in pos_df.iterrows():
-
-            for e in model.most_similar(row['word'], topn=20):
+            for e in model.wv.most_similar(row['word'], topn=20):
+            # for e in model.wv.most_similar(positive=[row['word'], 'good'], negative=['bad'], topn=20):
                 print(e[0], e[1])
                 result_df = result_df.append([{'word':row['word'], 'most_similar': e[0], 'similarity': e[1]}], ignore_index=False)
 

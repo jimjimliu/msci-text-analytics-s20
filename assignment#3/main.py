@@ -40,6 +40,7 @@ if __name__ == '__main__':
             files_path = params[1]
             if not os.path.exists(files_path):
                 raise Exception("Illegal path. QUITING...")
+            print('Using >', files_path, '< as input files path.')
             MyModel(files_path)
         else:
             raise Exception("Illegal path. QUITING...")
