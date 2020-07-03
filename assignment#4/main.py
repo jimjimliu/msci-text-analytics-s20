@@ -15,6 +15,7 @@ from tensorflow.keras import regularizers
 from gensim.models import Word2Vec
 from keras.utils import np_utils
 import pickle
+from keras.models import load_model
 
 
 class main(object):
@@ -125,9 +126,10 @@ class main(object):
                             input_length=maxlen))
         model.add(Flatten())
         model.add(Dropout(0.1))
-        # model.add(Dense(units=520, activation="relu", kernel_regularizer=regularizers.l2(l=0.001)))
+        model.add(Dense(units=520, activation="relu", kernel_regularizer=regularizers.l2(l=0.001)))
         # model.add(Dense(units=520, activation="sigmoid", kernel_regularizer=regularizers.l2(l=0.001)))
-        model.add(Dense(units=520, activation="tanh", kernel_regularizer=regularizers.l2(l=0.001)))
+        # model.add(Dense(units=520, activation="tanh", kernel_regularizer=regularizers.l2(l=0.001)))
+        model.add(Dropout(0.4))
         model.add(Dense(2, activation='softmax',  kernel_regularizer=regularizers.l2(l=0.001)))
         opt = keras.optimizers.Adam(learning_rate=0.0001)
         model.compile(loss='categorical_crossentropy', optimizer=opt, metrics=['accuracy'])
@@ -136,8 +138,8 @@ class main(object):
         loss, accuracy = model.evaluate(X_test, y_test)
         print('Accuracy: %f' % (accuracy * 100))
         # save the model
-        model.save(os.path.join(self.__path, 'nn_tanh.model'))
-        print('Model save at: >', os.path.join(self.__path, 'nn_sigmoid.model'), '<')
+        model.save(os.path.join(self.__path, 'nn_relu.model'))
+        print('Model save at: >', self.__path, '<')
 
 
 

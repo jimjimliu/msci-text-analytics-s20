@@ -43,7 +43,7 @@ class Inference():
         sentences = pd.read_csv(r'' + self.__path, sep='\t', names=['data'])
 
         # load model
-        model = load_model(self.__model_path)
+        model = load_model(self.__model_path, compile=True)
         # model.summary()
 
         # load tokenizer
@@ -67,7 +67,8 @@ if __name__ == '__main__':
         # if no path given, use default
         if (len(sys.argv) == 1):
             files_path = os.path.join(os.getcwd(), 'data', 'sentences.txt')
-            act_func = 'relu'
+            # default activation function if nothing passed to parameter
+            act_func = 'sigmoid'
             if not os.path.exists(files_path):
                 raise Exception("Illegal path. QUITING...")
             print('Using >', files_path, '< as input files path.')

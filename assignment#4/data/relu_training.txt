@@ -1,0 +1,40 @@
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+embedding (Embedding)        (None, 27, 100)           13172200
+_________________________________________________________________
+flatten (Flatten)            (None, 2700)              0
+_________________________________________________________________
+dropout (Dropout)            (None, 2700)              0
+_________________________________________________________________
+dense (Dense)                (None, 520)               1404520
+_________________________________________________________________
+dense_1 (Dense)              (None, 2)                 1042
+=================================================================
+Total params: 14,577,762
+Trainable params: 1,405,562
+Non-trainable params: 13,172,200
+_________________________________________________________________
+Epoch 1/10
+1280/1280 - 28s - loss: 0.8596 - accuracy: 0.6908 - val_loss: 0.6625 - val_accuracy: 0.7110
+Epoch 2/10
+1280/1280 - 28s - loss: 0.6206 - accuracy: 0.7177 - val_loss: 0.5880 - val_accuracy: 0.7288
+Epoch 3/10
+1280/1280 - 26s - loss: 0.5765 - accuracy: 0.7324 - val_loss: 0.5620 - val_accuracy: 0.7397
+Epoch 4/10
+1280/1280 - 26s - loss: 0.5587 - accuracy: 0.7418 - val_loss: 0.5545 - val_accuracy: 0.7431
+Epoch 5/10
+1280/1280 - 28s - loss: 0.5503 - accuracy: 0.7471 - val_loss: 0.5485 - val_accuracy: 0.7485
+Epoch 6/10
+1280/1280 - 32s - loss: 0.5453 - accuracy: 0.7520 - val_loss: 0.5476 - val_accuracy: 0.7516
+Epoch 7/10
+1280/1280 - 33s - loss: 0.5426 - accuracy: 0.7547 - val_loss: 0.5457 - val_accuracy: 0.7538
+Epoch 8/10
+1280/1280 - 30s - loss: 0.5404 - accuracy: 0.7577 - val_loss: 0.5489 - val_accuracy: 0.7492
+Epoch 9/10
+1280/1280 - 29s - loss: 0.5393 - accuracy: 0.7596 - val_loss: 0.5471 - val_accuracy: 0.7534
+Epoch 10/10
+1280/1280 - 26s - loss: 0.5382 - accuracy: 0.7614 - val_loss: 0.5454 - val_accuracy: 0.7546
+2500/2500 [==============================] - 11s 4ms/step - loss: 0.5432 - accuracy: 0.7577
+Accuracy: 75.774997
