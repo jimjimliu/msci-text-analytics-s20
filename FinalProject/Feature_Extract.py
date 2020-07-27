@@ -139,7 +139,7 @@ class FeatureExtract(object):
         x_train = np.array(x_train)
         y_train = np.array([self.label[i] for i in self.__data[:, 2]])
 
-        if(self.__over_sam):
+        if(self.__set=='train' and self.__over_sam):
             print("Over-sampling...")
             sm = SMOTE(random_state=0)
             x_train, y_train = sm.fit_resample(x_train, y_train)
